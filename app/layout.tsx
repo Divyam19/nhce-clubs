@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
-import { EdgeStoreProvider } from "@/lib/edgestore";
 import { Inter } from 'next/font/google';
 import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/toaster";
@@ -34,9 +33,9 @@ export default function RootLayout({
           style={{
             backgroundImage: `
               image-set(
-                url('/jj.jpg') 1x,
-                url('/jj.jpg') 2x,
-                url('/jj.jpg') 3x
+                url('/chargebee.jpg') 1x,
+                url('/chargebee.jpg') 2x,
+                url('/chargebee.jpg') 3x
               )`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -54,7 +53,7 @@ export default function RootLayout({
               srcSet="/backgrounds/Chargebee-tablet.jpg"
             />
             <img
-              src="/jj.jpg"
+              src="/chargebee.jpg"
               alt="Background"
               className="object-cover w-full h-full"
               loading="eager"
@@ -62,7 +61,6 @@ export default function RootLayout({
             />
           </picture>
         </div>
-
         <Providers>
           <ThemeProvider
             attribute="class"
@@ -70,17 +68,15 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <EdgeStoreProvider>
-              {/* Semi-transparent overlay and content */}
-              <div className="relative min-h-screen bg-black/30">
-                {/* Optional semi-transparent overlay */}
-                <div className="min-h-screen bg-black/30">
-                  <Navbar />
-                  <Toaster />
-                  {children}
-                </div>
+            {/* Semi-transparent overlay and content */}
+            <div className="relative min-h-screen bg-black/30">
+              {/* Optional semi-transparent overlay */}
+              <div className="min-h-screen bg-black/30">
+                <Navbar />
+                <Toaster />
+                {children}
               </div>
-            </EdgeStoreProvider>
+            </div>
           </ThemeProvider>
         </Providers>
       </body>
